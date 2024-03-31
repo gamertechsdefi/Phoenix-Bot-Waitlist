@@ -101,7 +101,7 @@ function Header() {
         </a>
         <a
           href="https://pancakeswap.finance/swap?outputCurrency=0xb6623B503d269f415B9B5c60CDDa3Aa4fE34Fd22"
-          className="block font-bold py-2 px-4 text-sm bg-pink-300 text-pink-900 rounded hover:bg-blue-700 hover:text-white transition duration-300"
+          className="block font-bold py-2 px-4 text-sm bg-[red] text-white rounded hover:bg-blue-700 hover:text-white transition duration-300"
         >
           Join Waitlist
         </a>
