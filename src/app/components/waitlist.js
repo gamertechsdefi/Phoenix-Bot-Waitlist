@@ -55,52 +55,63 @@ export default function WaitlistFill() {
         when: "beforeChildren",
         damping: 8,
         mass: 0.4,
-        staggerChildren: 0.6
+        staggerChildren: 0.6,
       },
     },
-  }
+  };
 
   const HeaderVariants = {
     hidden: {
       opacity: 0,
-      y: '-100vh'
+      y: "-100vh",
     },
     visible: {
       opacity: 1,
       y: 0,
     },
-  }
+  };
 
   const InputVariants = {
     hidden: {
       opacity: 0,
-      y: '-100vh'
+      y: "-100vh",
     },
     visible: {
       opacity: 1,
       y: 0,
-      
     },
+  };
+
+  const buttonVariants = {
+    hover: {
+      scale: 1.2,
+      color: "red",
+      backgroundColor: "#EEEEEE",
+      transition: {
+        repeatType: "reverse",
+        duration: 1,
+      }
+    }
   }
 
   return (
-    <div
-      className="mt-16"
-    >
+    <div className="mt-16">
       <motion.div
-      variants= {ParentVariants}
-      initial = "hidden"
-      animate= "visible" 
-      className="">
+        variants={ParentVariants}
+        initial="hidden"
+        animate="visible"
+        className=""
+      >
         <motion.h1
-          variants= {HeaderVariants}
+          variants={HeaderVariants}
           className=" my-4 font-bold text-center text-5xl md:text-9xl"
         >
           Safeguarding Communities
         </motion.h1>
         <motion.div
-        variants={InputVariants}
-        className="flex flex-col items-center justify-center w-full">
+          variants={InputVariants}
+          className="flex flex-col items-center justify-center w-full"
+        >
           <motion.input
             whileFocus={{ scale: 1.1 }}
             whileHover={{}}
@@ -119,7 +130,7 @@ export default function WaitlistFill() {
             className=" bg-[transparent] px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-[80%]"
           />
           <motion.input
-          whileFocus={{scale: 1.1}}
+            whileFocus={{ scale: 1.1 }}
             style={{
               textAlign: "center",
               borderWidth: "2px",
@@ -135,12 +146,9 @@ export default function WaitlistFill() {
             className=" bg-[transparent] mt-2 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-[80%]"
           />
           <motion.button
-            whileHover={{
-              scale: 1.2,
-              color: "red",
-              backgroundColor: "#EEEEEE",
-            }}
-            animate={{}}
+            variants={buttonVariants}
+            whileHover="hover"
+            repeatType = "reverse"
             onClick={handleSubmit}
             className="font-bold mt-4 hover:bg-[orange]"
             style={{
