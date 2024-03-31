@@ -87,41 +87,23 @@ function Header() {
       </motion.div>
       {/* Mobile Menu */}
       <div className={`${isMobileMenuOpen ? "block" : "hidden"} md:hidden`}>
-        <a href="#home" className="block py-2 px-4 text-sm hover:bg-blue-700">
-          Home
-        </a>
-        <a href="#about" className="block py-2 px-4 text-sm hover:bg-blue-700">
-          About
-        </a>
-        <a
-          href="#tokenomics"
-          className="block py-2 px-4 text-sm hover:bg-blue-700"
-        >
-          Keepernomics
-        </a>
-        <a
-          href="#howtobuy"
-          className="block py-2 px-4 text-sm hover:bg-blue-700"
-        >
-          How to buy
-        </a>
         <a
           href="#community"
           className="block py-2 px-4 text-sm hover:bg-blue-700"
         >
-          Join the Keepers
+          Telegram
         </a>
         <a
           href="#airdrop"
-          className="block font-bold py-2 px-4 text-sm hover:bg-blue-700"
+          className="block py-2 px-4 text-sm hover:bg-blue-700"
         >
-          Airdrop
+          Twitter
         </a>
         <a
           href="https://pancakeswap.finance/swap?outputCurrency=0xb6623B503d269f415B9B5c60CDDa3Aa4fE34Fd22"
           className="block font-bold py-2 px-4 text-sm bg-pink-300 text-pink-900 rounded hover:bg-blue-700 hover:text-white transition duration-300"
         >
-          Buy now
+          Join Waitlist
         </a>
       </div>
     </nav>
