@@ -88,8 +88,9 @@ export default function WaitlistFill() {
       color: "red",
       backgroundColor: "#EEEEEE",
       transition: {
-        repeatType: "reverse",
-        duration: 1,
+        duration: 0.5,
+        loop: Infinity,
+        repeatType: "mirror",
       }
     }
   }
@@ -147,8 +148,8 @@ export default function WaitlistFill() {
           />
           <motion.button
             variants={buttonVariants}
+            initial = "init"
             whileHover="hover"
-            repeatType = "reverse"
             onClick={handleSubmit}
             className="font-bold mt-4 hover:bg-[orange]"
             style={{
