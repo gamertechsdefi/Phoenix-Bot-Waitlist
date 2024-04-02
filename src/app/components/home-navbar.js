@@ -58,7 +58,7 @@ export default function HomeNavBar() {
             </motion.svg>
           </motion.button>
           {isOpen && (
-            <div className="mt-8 flex flex-col absolute bg-white p-4 rounded-sm ">
+            <div className="mt-8 flex flex-col absolute bg-gray-100 p-4 rounded-sm ">
               <motion.ul
                 onClick={() => setIsOpen(false)}
                 variants={popupButtonVariants}
