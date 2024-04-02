@@ -3,7 +3,13 @@ import React from "react";
 
 function QuickLinks() {
   return (
-    <div className="bg-[red] mt-16 p-4 flex text-left w-screen justify-center md:w-full flex-row">
+    <div
+    style={{
+      background: "rgb(255,166,0)",
+      background:
+        "linear-gradient(127deg, rgba(255,166,0,1) 0%, rgba(255,0,0,1) 100%)",
+    }} 
+    className="mt-16 p-4 flex text-left w-screen justify-center md:w-full flex-row">
       <div className="flex-1 text-white">
         <div
           className="flex flex-col mx-4  md:mx-16"

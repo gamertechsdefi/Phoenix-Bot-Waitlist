@@ -205,7 +205,7 @@ export default function Intro() {
           <div
             className=" text-center mx-4 py-16 px-4 mt-16 md:mx-16"
             style={{
-              borderColor: "red",
+              borderColor: "orange",
               borderRadius: "30px",
               borderWidth: "2px ",
             }}
