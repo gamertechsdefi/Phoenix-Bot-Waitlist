@@ -6,14 +6,14 @@ function QuickLinks() {
     <div
     style={{
       background: "rgb(61,61,61)",
-      background: "linear-gradient(180deg, rgba(61,61,61,1) 0%, rgba(148,148,148,1) 100%)",
+      background: "linear-gradient(0deg, rgba(61,61,61,1) 0%, rgba(148,148,148,1) 100%)",
     }} 
     className="mt-16 p-4 flex text-left w-screen justify-center md:w-full flex-row">
       <div className="flex-1 text-white">
         <div
           className="flex flex-col mx-4  md:mx-16"
         >
-          <h1 className="text md:text-3xl w-1/3 font-bold py-4">
+          <h1 className="text- md:text-3xl w-1/3 font-bold py-4">
             Links
           </h1>
           <div  className="flex flex-col" style={{fontSize: "12px"}}>
