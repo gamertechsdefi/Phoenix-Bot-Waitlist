@@ -13,11 +13,13 @@ const popVariants = {
 const popupButtonVariants = {
   hidden: {
     opacity: 0,
+    y: '-100vh'
   },
   visible: {
     opacity: 1,
+    y:0,
     transition: {
-      duration: 2,
+      duration: 1,
     },
   },
 };
@@ -46,24 +48,15 @@ export default function HomeNavBar() {
             className=" font-bold hover:text-[gray] relative flex"
           >
             <span className="">Menu</span>
-            <motion.svg
-              initial={{ rotate: 270 }}
-              whileTap={{ rotate: 0 }}
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 15.5l-6-6 1.41-1.41L12 12.67l4.59-4.58L18 9.5z" />
-            </motion.svg>
           </motion.button>
           {isOpen && (
-            <div className="mt-8 flex flex-col absolute bg-gray-100 p-4 rounded-sm ">
-              <motion.ul
-                onClick={() => setIsOpen(false)}
-                variants={popupButtonVariants}
+            <motion.div
+            variants={popupButtonVariants}
                 initial="hidden"
                 animate="visible"
+                className="mt-8 flex flex-col absolute bg-gray-100 p-4 rounded-sm ">
+              <motion.ul
+                onClick={() => setIsOpen(false)}
                 className="flex flex-col cursor-pointer"
               >
                 <a href="https://phoenixtoken.community" className="hover:text-gray-500">Home</a>
@@ -76,7 +69,7 @@ export default function HomeNavBar() {
                 className="bg-[red] text-white font-bold rounded-[5px] p-1 hover:bg-gray-100 hover:text-[red]">
                   Buy now</button>
               </motion.ul>
-            </div>
+            </motion.div>
           )}
         </div>
       </motion.div>
