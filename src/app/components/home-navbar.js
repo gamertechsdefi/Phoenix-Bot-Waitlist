@@ -38,7 +38,7 @@ export default function HomeNavBar() {
   // }
 
   return (
-    <nav className=" sticky top-1 z-30 items-center">
+    <nav className=" sticky top-0 z-30 items-center">
       <motion.div
         initial={{ x: "-100vw" }}
         animate={{ x: 0 }}
