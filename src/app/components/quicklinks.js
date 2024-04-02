@@ -5,8 +5,7 @@ function QuickLinks() {
   return (
     <div
     style={{
-      background: "rgb(61,61,61)",
-      background: "linear-gradient(0deg, rgba(61,61,61,1) 0%, rgba(148,148,148,1) 100%)",
+      backgroundColor: "#ff6200"
     }} 
     className="mt-16 p-4 flex text-left w-screen justify-center md:w-full flex-row">
       <div className="flex-1 text-white">
