@@ -224,7 +224,7 @@ export default function Intro() {
               crypto realm, designed to provide maximum security through
               innovative features and robust functionalities.
             </p>
-            <button className="bg-[red] text-white p-4">Read More</button>
+            <button className="bg-[black] rounded-[10px] text-white p-4">Read More</button>
           </div>
         </div>
       </div>

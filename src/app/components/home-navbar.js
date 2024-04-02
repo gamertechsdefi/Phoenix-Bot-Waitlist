@@ -33,9 +33,9 @@ export default function HomeNavBar() {
   return (
     <nav className=" sticky top-0 z-30 items-center">
       <motion.div
-        initial={{ x: "-100vw" }}
-        animate={{ x: 0 }}
-        transition={{ type: "spring", stiffness: "400", delay: -0.2 }}
+        initial={{ y: "-100vh" }}
+        animate={{ y: 0 }}
+        transition={{ type: "spring", stiffness: "300", delay: -0.2, duration: 2 }}
         className="bg-white flex mx-4 items-center my-4 md:mx-8"
       >
         <div className="mt-2 flex items-center">
@@ -66,7 +66,7 @@ export default function HomeNavBar() {
                 <a href="https://warpcast.com/phoenixtoken" className="hover:text-gray-500">Warpcaster</a>
                 <button 
 
-                className="bg-[red] text-white font-bold rounded-[5px] p-1 hover:bg-gray-100 hover:text-[red]">
+                className="bg-gray-500 text-white font-bold rounded-[5px] p-1 hover:bg-gray-100 hover:text-[red]">
                   Buy now</button>
               </motion.ul>
             </motion.div>
