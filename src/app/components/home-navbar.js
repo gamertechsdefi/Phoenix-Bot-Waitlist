@@ -43,7 +43,7 @@ export default function HomeNavBar() {
         initial={{ x: "-100vw" }}
         animate={{ x: 0 }}
         transition={{ type: "spring", stiffness: "400", delay: -0.2 }}
-        className="flex mx-4 items-center my-4 md:mx-8"
+        className="bg-white flex mx-4 items-center my-4 md:mx-8"
       >
         <div className="flex items-center">
           <img src={logoImage} width="50px" className="mr-2" />
