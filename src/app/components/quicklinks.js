@@ -31,8 +31,8 @@ function QuickLinks() {
             Socials
           </h1>
           <div className="flex flex-col" style={{fontSize: "12px"}}>
-          <a className="hover:text-[yellow]" href="https://twitter.com/PhoenixToken0">Telegram</a>
-          <a className="hover:text-[yellow]" href="https://t.me/PhoenixToken0">Twitter</a>
+          <a className="hover:text-[yellow]" href="https://twitter.com/PhoenixToken0">Twitter</a>
+          <a className="hover:text-[yellow]" href="https://t.me/PhoenixToken0">Telegram</a>
           <a className="hover:text-[yellow]" href="https://warpcast.com/phoenixtoken">Warpcaster</a>
           <a className="hover:text-[yellow]" href="https://medium.com/@phoenixtoken">Medium</a>
           <a className="hover:text-[yellow]" href="https://www.tiktok.com/@phoenixtoken">TikTok</a>
