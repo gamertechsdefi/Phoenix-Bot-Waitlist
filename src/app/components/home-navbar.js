@@ -49,7 +49,7 @@ export default function HomeNavBar() {
       animate = "visible"
         className="bg-white flex mx-4 items-center my-4 md:mx-8"
       >
-        <div className="mt-2 flex items-center">
+        <div className="my-2 flex items-center">
           <img src={logoImage} width="50px" className="mr-2" />
           <span className="font-bold text-red-900">Phoenix Bot</span>
         </div>
