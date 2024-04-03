@@ -5,8 +5,58 @@ import "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { database } from "../firebaseConfig";
-import { push, ref, set } from "firebase/database";
-import Head from "next/head";
+import { ref, set, push } from "firebase/database";
+
+const ParentVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      delay: 0.5,
+      when: "beforeChildren",
+      damping: 8,
+      mass: 0.4,
+      staggerChildren: 0.6,
+    },
+  },
+};
+
+const HeaderVariants = {
+  hidden: {
+    opacity: 0,
+    y: "-100vh",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
+const InputVariants = {
+  hidden: {
+    opacity: 0,
+    y: "-100vh",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
+const buttonVariants = {
+  hover: {
+    scale: 1.2,
+    color: "red",
+    backgroundColor: "#EEEEEE",
+    transition: {
+      duration: 0.5,
+      loop: Infinity,
+      repeatType: "mirror",
+    },
+  },
+};
 
 export default function WaitlistFill() {
   const [emailAdddress, setEmailAddress] = useState("");
@@ -26,7 +76,8 @@ export default function WaitlistFill() {
       } else if (!isValidateRegexWalletAddress) {
         alert("enter right wallet address");
       } else {
-        print(isValidateRegexWalletAddress);
+        console.log(isValidateRegexWalletAddress);
+
         const waitlistDataRef = ref(database, "signers");
         const newWaitlistDataRef = push(waitlistDataRef);
 
@@ -43,57 +94,6 @@ export default function WaitlistFill() {
       console.error("Firebase error", error);
     }
   };
-
-  const ParentVariants = {
-    hidden: {
-      opacity: 0,
-    },
-    visible: {
-      opacity: 1,
-      transition: {
-        delay: 0.5,
-        when: "beforeChildren",
-        damping: 8,
-        mass: 0.4,
-        staggerChildren: 0.6,
-      },
-    },
-  };
-
-  const HeaderVariants = {
-    hidden: {
-      opacity: 0,
-      y: "-100vh",
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
-  };
-
-  const InputVariants = {
-    hidden: {
-      opacity: 0,
-      y: "-100vh",
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
-  };
-
-  const buttonVariants = {
-    hover: {
-      scale: 1.2,
-      color: "red",
-      backgroundColor: "#EEEEEE",
-      transition: {
-        duration: 0.5,
-        loop: Infinity,
-        repeatType: "mirror",
-      }
-    }
-  }
 
   return (
     <div className="mt-16">
@@ -148,7 +148,7 @@ export default function WaitlistFill() {
           />
           <motion.button
             variants={buttonVariants}
-            initial = "init"
+            initial="init"
             whileHover="hover"
             onClick={handleSubmit}
             className="font-bold mt-4 hover:bg-[orange]"
