@@ -74,9 +74,7 @@ export default function WaitlistFill() {
     /^(?!\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const isValidateRegexEmailAddress = regexEmailAddress.test(emailAdddress);
 
-  const alert = () => {
-    
-  }
+  const alert = () => {};
 
   const handleSubmit = () => {
     try {
@@ -87,12 +85,12 @@ export default function WaitlistFill() {
       } else {
         console.log(isValidateRegexWalletAddress);
 
-        addDoc (waitlistDatabase, {
-           emailAdddress: emailAdddress,
-           walletAddress: walletAddress,
-         });
-         setEmailAddress("");
-         SetWalletAddress("");
+        addDoc(waitlistDatabase, {
+          emailAdddress: emailAdddress,
+          walletAddress: walletAddress,
+        });
+        setEmailAddress("");
+        SetWalletAddress("");
 
         alert("you've successfully joined the waitlist");
       }
@@ -102,12 +100,19 @@ export default function WaitlistFill() {
   };
 
   return (
-    <div className="mt-16">
+    <div
+      className="py-8"
+      style={{
+        background: "rgb(199,199,199)",
+        background:
+          "linear-gradient(0deg, rgba(199,199,199,1) 0%, rgba(238,238,238,1) 100%)",
+      }}
+    >
       <motion.div
         variants={ParentVariants}
         initial="hidden"
         animate="visible"
-        className=""
+        className="mt-8"
       >
         <motion.h1
           variants={HeaderVariants}

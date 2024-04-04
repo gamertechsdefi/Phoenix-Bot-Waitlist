@@ -48,7 +48,7 @@ export default function HomeNavBar() {
   // const listRef = useRef();
 
   return (
-    <nav className=" sticky top-0 z-30 items-center">
+    <nav className=" bg-white sticky top-0 z-30 items-center">
       <motion.div
         variants={navVariants}
         initial="hidden"

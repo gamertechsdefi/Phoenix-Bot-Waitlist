@@ -57,6 +57,36 @@ const SecondChildrenVariant = {
 export default function Intro() {
   return (
     <motion.div variants={HeaderVariants} initial = "hidden" animate = "visible">
+
+<div className="">
+        <div>
+          <div
+            className=" text-center mx-4 py-16 px-4 mt-16 md:mx-16"
+            style={{
+              borderColor: "orange",
+              borderRadius: "30px",
+              borderWidth: "2px ",
+            }}
+          >
+            <h2
+              style={{
+                fontWeight: "bold",
+                fontSize: "24px",
+              }}
+            >
+              About Phoenix Token Bot
+            </h2>
+            <p className="p-8 pt-0 md:px-32" style={{ fontSize: "16px" }}>
+              In the dynamic and ever-evolving world of cryptocurrency, security
+              is paramount. Meet PhoenixBot, your dedicated companion in the
+              crypto realm, designed to provide maximum security through
+              innovative features and robust functionalities.
+            </p>
+            <button className="bg-[black] rounded-[10px] text-white p-4">Read More</button>
+          </div>
+        </div>
+      </div>
+      
       <motion.div variants={ChildrenVariant} className="flex flex-col text-left md:flex-row-reverse items-center">
         <div className="flex-1">
           <img
@@ -199,35 +229,6 @@ export default function Intro() {
         </div>
       </motion.div>
       {/*Smart Contract Check div ends here */}
-
-      <div className="">
-        <div>
-          <div
-            className=" text-center mx-4 py-16 px-4 mt-16 md:mx-16"
-            style={{
-              borderColor: "orange",
-              borderRadius: "30px",
-              borderWidth: "2px ",
-            }}
-          >
-            <h2
-              style={{
-                fontWeight: "bold",
-                fontSize: "24px",
-              }}
-            >
-              About Phoenix Token Bot
-            </h2>
-            <p className="p-8 pt-0 md:px-32" style={{ fontSize: "16px" }}>
-              In the dynamic and ever-evolving world of cryptocurrency, security
-              is paramount. Meet PhoenixBot, your dedicated companion in the
-              crypto realm, designed to provide maximum security through
-              innovative features and robust functionalities.
-            </p>
-            <button className="bg-[black] rounded-[10px] text-white p-4">Read More</button>
-          </div>
-        </div>
-      </div>
     </motion.div>
   );
 }
