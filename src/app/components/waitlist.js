@@ -105,7 +105,7 @@ export default function WaitlistFill() {
       style={{
         background: "rgb(199,199,199)",
         background:
-          "linear-gradient(0deg, rgba(199,199,199,1) 0%, rgba(238,238,238,1) 100%)",
+          "linear-gradient(180deg, rgba(249,249,249,1) 0%, rgba(238,238,238,1) 100%)",
       }}
     >
       <motion.div
