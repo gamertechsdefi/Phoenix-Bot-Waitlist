@@ -1,11 +1,13 @@
 "use client";
-import { animate, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 import "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { database } from "../firebaseConfig";
-import { ref, set, push } from "firebase/database";
+import { db, auth } from "../firebaseConfig";
+
+import { collection, addDoc } from "firebase/firestore";
+import { sendEmailVerification } from "firebase/auth";
 
 const ParentVariants = {
   hidden: {
@@ -58,9 +60,12 @@ const buttonVariants = {
   },
 };
 
+const waitlistDatabase = collection(db, "signers");
+
 export default function WaitlistFill() {
   const [emailAdddress, setEmailAddress] = useState("");
   const [walletAddress, SetWalletAddress] = useState("");
+  const [userPassword, SetUserPassword] = useState("");
 
   const regexWalletAddress = /^(0x)?[0-9a-fA-F]{40}$/;
   const isValidateRegexWalletAddress = regexWalletAddress.test(walletAddress);
@@ -69,24 +74,25 @@ export default function WaitlistFill() {
     /^(?!\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const isValidateRegexEmailAddress = regexEmailAddress.test(emailAdddress);
 
+  const alert = () => {
+    
+  }
+
   const handleSubmit = () => {
     try {
       if (!isValidateRegexEmailAddress) {
         alert("enter right email address");
-      } else if (!isValidateRegexWalletAddress) {
-        alert("enter right wallet address");
+        // } else if (!isValidateRegexWalletAddress) {
+        //   alert("enter right wallet address");
       } else {
         console.log(isValidateRegexWalletAddress);
 
-        const waitlistDataRef = ref(database, "signers");
-        const newWaitlistDataRef = push(waitlistDataRef);
-
-        set(newWaitlistDataRef, {
-          emailAdddress: emailAdddress,
-          walletAddress: walletAddress,
-        });
-        setEmailAddress("");
-        SetWalletAddress("");
+        addDoc (waitlistDatabase, {
+           emailAdddress: emailAdddress,
+           walletAddress: walletAddress,
+         });
+         setEmailAddress("");
+         SetWalletAddress("");
 
         alert("you've successfully joined the waitlist");
       }
@@ -146,6 +152,7 @@ export default function WaitlistFill() {
             onChange={(e) => SetWalletAddress(e.target.value)}
             className=" bg-[transparent] mt-2 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-[80%]"
           />
+
           <motion.button
             variants={buttonVariants}
             initial="init"
