@@ -80,7 +80,7 @@ export default function Intro() {
               In the dynamic and ever-evolving world of cryptocurrency, security
               is paramount. Meet PhoenixBot, your dedicated companion in the
               crypto realm, designed to provide maximum security through
-              innovative features and robust functionalities.
+              innovative features and robust functionalities
             </p>
             <button className="bg-[black] rounded-[10px] text-white p-4">Read More</button>
           </div>
