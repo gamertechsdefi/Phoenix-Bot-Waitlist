@@ -1,5 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
+import Modal from "react-modal";
+
+import Modalpoup from "./modal.js";
 
 import "next/image";
 import Link from "next/link";
@@ -63,6 +66,35 @@ const buttonVariants = {
 const waitlistDatabase = collection(db, "signers");
 
 export default function WaitlistFill() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const customStyles = {
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.6)",
+    },
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+    },
+  };
+
+  <Modal isOpen={isOpen} onRequestClose={closeModal} style={customStyles}>
+    <h1>Modal Content</h1>
+    <button onClick={closeModal}>Close Modal</button>
+  </Modal>;
+
   const [emailAdddress, setEmailAddress] = useState("");
   const [walletAddress, SetWalletAddress] = useState("");
   const [userPassword, SetUserPassword] = useState("");
@@ -74,24 +106,44 @@ export default function WaitlistFill() {
     /^(?!\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const isValidateRegexEmailAddress = regexEmailAddress.test(emailAdddress);
 
+  const actionCodeSettings = {
+    // URL you want to redirect back to. The domain (www.example.com) for this
+    // URL must be in the authorized domains list in the Firebase Console.
+    url: "https://www.example.com/finishSignUp?cartId=1234",
+    // This must be true.
+    handleCodeInApp: true,
+    iOS: {
+      bundleId: "com.example.ios",
+    },
+    android: {
+      packageName: "com.example.android",
+      installApp: true,
+      minimumVersion: "12",
+    },
+    dynamicLinkDomain: "example.page.link",
+  };
 
   const handleSubmit = () => {
     try {
-      if (!isValidateRegexEmailAddress) {
-        alert("enter right email address");
-         } else if (!isValidateRegexWalletAddress) {
-           alert("enter right wallet address");
-      } else {
-        console.log(isValidateRegexWalletAddress);
+      
+       if (!isValidateRegexEmailAddress) {
+        AlertPopup("Enter correct email address", "OK");
+        console.log("this is true");
+          } else if (!isValidateRegexWalletAddress) {
+            AlertPopup("Enter correct wallet address", "OK");
+       } else {
+         console.log(isValidateRegexWalletAddress);
 
-        addDoc(waitlistDatabase, {
-          emailAdddress: emailAdddress,
-          walletAddress: walletAddress,
-        });
-        setEmailAddress("");
-        SetWalletAddress("");
+         addDoc(waitlistDatabase, {
+           emailAdddress: emailAdddress,
+           walletAddress: walletAddress,
+         });
+         setEmailAddress("");
+         SetWalletAddress("");
 
-        alert("you've successfully joined the waitlist");
+         AlertPopup("You've successfully joined the waitlist, kindly verify your email address \n", "OK");
+         console.log("this is true");
+
       }
     } catch (error) {
       console.error("Firebase error", error);
@@ -176,4 +228,82 @@ export default function WaitlistFill() {
       </motion.div>
     </div>
   );
+}
+
+function AlertPopup(text, buttonText) {
+  // Create the alert container
+  const alertContainer = document.createElement("div");
+  alertContainer.classList.add("custom-alert-container");
+
+  // Create the alert box
+  const alertBox = document.createElement("div");
+  alertBox.classList.add("custom-alert-box");
+
+  // Create the text node for alert text
+  const alertText = document.createElement("div");
+  alertText.textContent = text;
+  alertBox.appendChild(alertText); // Append the text node to the alert box
+
+  // Create the alert button
+  const alertButton = document.createElement("button");
+  alertButton.classList.add("custom-alert-button");
+  alertButton.textContent = buttonText;
+
+  // Add event listener to the alert button
+  alertButton.addEventListener("click", () => {
+    // Remove the alert container when the button is clicked
+    alertContainer.remove();
+    // Re-enable scrolling
+    document.body.style.overflow = "";
+    // Make sticky header visible again
+    const stickyHeader = document.querySelector('.sticky-header');
+    if (stickyHeader) {
+      stickyHeader.style.position = 'sticky';
+    }
+  });
+
+  // Append the alert button to the alert box
+  alertBox.appendChild(alertButton);
+
+  // Append the alert container to the body
+  document.body.appendChild(alertContainer);
+  alertContainer.appendChild(alertBox); // Append the alert box to the alert container
+
+  // Style the alert container
+  alertContainer.style.position = "fixed";
+  alertContainer.style.top = "0";
+  alertContainer.style.left = "0";
+  alertContainer.style.width = "100%";
+  alertContainer.style.height = "100%";
+  alertContainer.style.display = "flex";
+  alertContainer.style.justifyContent = "center";
+  alertContainer.style.alignItems = "center";
+  alertContainer.style.backgroundColor = "rgba(0, 0, 0, 0)";
+  alertContainer.style.zIndex = "1000"; // Ensure it's above other content
+
+  // Style the alert box
+  alertBox.style.backgroundColor = "#fff";
+  alertBox.style.padding = "20px";
+  alertBox.style.borderRadius = "5px";
+  alertBox.style.display = "flex";
+  alertBox.style.flexDirection = "column";
+  alertBox.style.alignItems = "left";
+
+  // Style the alert button
+  alertButton.style.padding = "10px 20px";
+  alertButton.style.border = "none";
+  alertButton.style.borderRadius = "5px";
+  alertButton.style.cursor = "pointer";
+  alertButton.style.marginTop = "10px";
+  alertButton.style.backgroundColor = "gray";
+  alertButton.style.color = "white";
+
+  // Disable scrolling
+  document.body.style.overflow = "hidden";
+
+  // Hide sticky header
+  const stickyHeader = document.querySelector('.sticky-header');
+  if (stickyHeader) {
+    stickyHeader.style.position = 'absolute';
+  }
 }
