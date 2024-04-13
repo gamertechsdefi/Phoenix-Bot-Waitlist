@@ -100,7 +100,7 @@ export default function WaitlistFill() {
   const password = "userPassword";
 
   const regexWalletAddress = /^(0x)?[0-9a-fA-F]{40}$/;
-  const isValidateRegexWalletAddress = regexWalletAddress.test(walletAddress);
+  // const isValidateRegexWalletAddress = regexWalletAddress.test(walletAddress);
 
   const regexEmailAddress =
     /^(?!\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -129,9 +129,8 @@ export default function WaitlistFill() {
        if (!isValidateRegexEmailAddress) {
         AlertPopup("Enter correct email address", "OK");
         console.log("this is true");
-          } else if (!isValidateRegexWalletAddress) {
-            AlertPopup("Enter correct wallet address", "OK");
-       } else {
+          }
+        else {
          console.log(isValidateRegexWalletAddress);
 
 
