@@ -10,7 +10,7 @@ import { useState } from "react";
 import { db, auth } from "../firebaseConfig";
 
 import { collection, addDoc } from "firebase/firestore";
-import { sendEmailVerification } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 
 const ParentVariants = {
   hidden: {
@@ -97,7 +97,7 @@ export default function WaitlistFill() {
 
   const [emailAdddress, setEmailAddress] = useState("");
   const [walletAddress, SetWalletAddress] = useState("");
-  const [userPassword, SetUserPassword] = useState("");
+  const password = "userPassword";
 
   const regexWalletAddress = /^(0x)?[0-9a-fA-F]{40}$/;
   const isValidateRegexWalletAddress = regexWalletAddress.test(walletAddress);
@@ -106,7 +106,7 @@ export default function WaitlistFill() {
     /^(?!\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const isValidateRegexEmailAddress = regexEmailAddress.test(emailAdddress);
 
-  const actionCodeSettings = {
+  const ActionCodeSettings = {
     // URL you want to redirect back to. The domain (www.example.com) for this
     // URL must be in the authorized domains list in the Firebase Console.
     url: "https://www.example.com/finishSignUp?cartId=1234",
@@ -133,6 +133,10 @@ export default function WaitlistFill() {
             AlertPopup("Enter correct wallet address", "OK");
        } else {
          console.log(isValidateRegexWalletAddress);
+
+
+
+         createUserWithEmailAndPassword (auth, email, password);
 
          addDoc(waitlistDatabase, {
            emailAdddress: emailAdddress,
