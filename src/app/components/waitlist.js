@@ -131,7 +131,6 @@ export default function WaitlistFill() {
         console.log("this is true");
           }
         else {
-         console.log(isValidateRegexWalletAddress);
 
 
 
