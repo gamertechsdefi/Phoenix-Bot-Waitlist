@@ -6,11 +6,15 @@ import Modalpoup from "./modal.js";
 
 import "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { db, auth } from "../firebaseConfig";
 
 import { collection, addDoc } from "firebase/firestore";
-import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  fetchSignInMethodsForEmail,
+} from "firebase/auth";
 
 const ParentVariants = {
   hidden: {
@@ -68,39 +72,9 @@ const waitlistDatabase = collection(db, "signers");
 export default function WaitlistFill() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-
-  const customStyles = {
-    overlay: {
-      backgroundColor: "rgba(0, 0, 0, 0.6)",
-    },
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-    },
-  };
-
-  <Modal isOpen={isOpen} onRequestClose={closeModal} style={customStyles}>
-    <h1>Modal Content</h1>
-    <button onClick={closeModal}>Close Modal</button>
-  </Modal>;
-
   const [emailAdddress, setEmailAddress] = useState("");
-  const [walletAddress, SetWalletAddress] = useState("");
-  const password = "userPassword";
-
-  const regexWalletAddress = /^(0x)?[0-9a-fA-F]{40}$/;
-  // const isValidateRegexWalletAddress = regexWalletAddress.test(walletAddress);
+  const [walletAddress, setWalletAddress] = useState("");
+  const password = "passwordGenerated";
 
   const regexEmailAddress =
     /^(?!\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -123,34 +97,55 @@ export default function WaitlistFill() {
     dynamicLinkDomain: "example.page.link",
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     try {
-      
-       if (!isValidateRegexEmailAddress) {
+      if (!isValidateRegexEmailAddress) {
         AlertPopup("Enter correct email address", "OK");
         console.log("this is true");
-          }
-        else {
+      } else {
+        await createUserWithEmailAndPassword(auth, emailAdddress, password)
+          .then(async (userCredential) => {
+            // User registered successfully
+            const user = userCredential.user;
 
+            sendEmailVerification(user);
 
+            await addDoc(waitlistDatabase, {
+              emailAdddress: emailAdddress,
+              walletAddress: walletAddress,
+            });
+            AlertPopup(
+              "You've successfully joined the waitlist, kindly verify your email address \n",
+              "OK"
+            );
+          })
+          .catch((error) => {
+            // Handle errors
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            if (errorCode === "auth/email-already-in-use") {
+              AlertPopup("Email already in use", "Ok");
+              // You can notify the user or handle this case as needed
+            } else {
+              console.error("Error:", errorMessage);
+            }
+          });
+        setEmailAddress("");
+        setWalletAddress("");
 
-         createUserWithEmailAndPassword (auth, email, password);
-
-         addDoc(waitlistDatabase, {
-           emailAdddress: emailAdddress,
-           walletAddress: walletAddress,
-         });
-         setEmailAddress("");
-         SetWalletAddress("");
-
-         AlertPopup("You've successfully joined the waitlist, kindly verify your email address \n", "OK");
-         console.log("this is true");
-
+        console.log("this is true");
       }
+
     } catch (error) {
       console.error("Firebase error", error);
     }
   };
+
+  useEffect(() => {
+    auth.onAuthStateChanged((userCredential) => {
+      console.log(userCredential);
+    });
+  }, []);
 
   return (
     <div
@@ -207,7 +202,7 @@ export default function WaitlistFill() {
             name="text"
             required
             value={walletAddress}
-            onChange={(e) => SetWalletAddress(e.target.value)}
+            onChange={(e) => setWalletAddress(e.target.value)}
             className=" bg-[transparent] mt-2 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-[80%]"
           />
 
@@ -258,9 +253,9 @@ function AlertPopup(text, buttonText) {
     // Re-enable scrolling
     document.body.style.overflow = "";
     // Make sticky header visible again
-    const stickyHeader = document.querySelector('.sticky-header');
+    const stickyHeader = document.querySelector(".sticky-header");
     if (stickyHeader) {
-      stickyHeader.style.position = 'sticky';
+      stickyHeader.style.position = "sticky";
     }
   });
 
@@ -304,8 +299,8 @@ function AlertPopup(text, buttonText) {
   document.body.style.overflow = "hidden";
 
   // Hide sticky header
-  const stickyHeader = document.querySelector('.sticky-header');
+  const stickyHeader = document.querySelector(".sticky-header");
   if (stickyHeader) {
-    stickyHeader.style.position = 'absolute';
+    stickyHeader.style.position = "absolute";
   }
 }

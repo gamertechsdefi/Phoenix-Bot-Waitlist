@@ -1,7 +1,7 @@
 "use client";
 import "next/image";
 import "next/font/google";
-import HomeNavBar from "../components/home-navbar";
+import HaomeNavBar from "../components/home-navbar";
 
 export default function Interactions() {
   return (
