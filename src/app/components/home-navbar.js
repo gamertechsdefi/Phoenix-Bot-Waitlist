@@ -70,8 +70,8 @@ export default function HomeNavBar() {
             {isOpen && (
               <motion.div
                 variants={popupButtonVariants}
-                initial = "hidden"
-                animate = "visible"
+                initial="hidden"
+                animate="visible"
                 exit="exit"
                 className="mt-8 flex flex-col absolute bg-gray-100 p-4 rounded-sm "
               >
@@ -80,36 +80,41 @@ export default function HomeNavBar() {
                   className="flex flex-col cursor-pointer"
                 >
                   <a
+                    target="blank"
                     href="https://phoenixtoken.community"
                     className="hover:text-gray-500"
                   >
                     Home
                   </a>
                   <a
+                  target="blank"
                     href="https://t.me/PhoenixToken0"
                     className="hover:text-gray-500"
                   >
                     Telegram
                   </a>
                   <a
+                  target="blank"
                     href="https://x.com/PhoenixToken0"
                     className="hover:text-gray-500"
                   >
                     Twitter
                   </a>
                   <a
+                  target="blank"
                     href="https://medium.com/@phoenixtoken"
                     className="hover:text-gray-500"
                   >
                     Medium
                   </a>
                   <a
+                  target="blank"
                     href="https://warpcast.com/phoenixtoken"
                     className="hover:text-gray-500"
                   >
                     Warpcaster
                   </a>
-                  <a href="https://pancakeswap.finance/swap?outputCurrency=0x885c99a787BE6b41cbf964174C771A9f7ec48e04">
+                  <a target="blank" href="https://pancakeswap.finance/swap?outputCurrency=0x885c99a787BE6b41cbf964174C771A9f7ec48e04">
                     <button className="bg-gray-500 text-white font-bold rounded-[5px] p-1 hover:bg-gray-100 hover:text-[red]">
                       Buy now
                     </button>{" "}

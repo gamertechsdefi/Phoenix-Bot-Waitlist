@@ -160,11 +160,11 @@ export default function WaitlistFill() {
         variants={ParentVariants}
         initial="hidden"
         animate="visible"
-        className="mt-8"
+        className="mt-8 mb-4"
       >
         <motion.h1
           variants={HeaderVariants}
-          className=" my-4 font-bold text-center text-5xl md:text-9xl"
+          className=" my-4 mb-8 font-bold text-center text-5xl md:text-9xl"
         >
           Safeguarding Communities
         </motion.h1>
@@ -187,7 +187,7 @@ export default function WaitlistFill() {
             required
             value={emailAdddress}
             onChange={(e) => setEmailAddress(e.target.value)}
-            className=" bg-[transparent] px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-[80%]"
+            className=" bg-[transparent] px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-[80%] md:w-[50%]"
           />
           <motion.input
             whileFocus={{ scale: 1.1 }}
@@ -203,7 +203,7 @@ export default function WaitlistFill() {
             required
             value={walletAddress}
             onChange={(e) => setWalletAddress(e.target.value)}
-            className=" bg-[transparent] mt-2 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-[80%]"
+            className=" bg-[transparent] mt-2 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-[80%] md:w-[50%]"
           />
 
           <motion.button
