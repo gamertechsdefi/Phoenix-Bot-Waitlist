@@ -1,20 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
-import Modal from "react-modal";
-
-import Modalpoup from "./modal.js";
+import { useRouter } from "next/navigation";
 
 import "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { db, auth } from "../firebaseConfig";
 
 import { collection, addDoc } from "firebase/firestore";
-import {
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
-  fetchSignInMethodsForEmail,
-} from "firebase/auth";
+
 
 const ParentVariants = {
   hidden: {
@@ -67,58 +60,36 @@ const buttonVariants = {
   },
 };
 
-const waitlistDatabase = collection(db, "signers");
+
 
 export default function WaitlistFill() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const waitlistDatabase = collection(db, "signers");
+
+const router = useRouter();
+
   const [emailAdddress, setEmailAddress] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
-  const password = "passwordGenerated";
 
   const regexEmailAddress =
     /^(?!\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const isValidateRegexEmailAddress = regexEmailAddress.test(emailAdddress);
 
-  const ActionCodeSettings = {
-    // URL you want to redirect back to. The domain (www.example.com) for this
-    // URL must be in the authorized domains list in the Firebase Console.
-    url: "https://www.example.com/finishSignUp?cartId=1234",
-    // This must be true.
-    handleCodeInApp: true,
-    iOS: {
-      bundleId: "com.example.ios",
-    },
-    android: {
-      packageName: "com.example.android",
-      installApp: true,
-      minimumVersion: "12",
-    },
-    dynamicLinkDomain: "example.page.link",
-  };
-
   const handleSubmit = async () => {
+
     try {
       if (!isValidateRegexEmailAddress) {
         AlertPopup("Enter correct email address", "OK");
-        console.log("this is true");
-      } else {
-        await createUserWithEmailAndPassword(auth, emailAdddress, password)
-          .then(async (userCredential) => {
-            // User registered successfully
-            const user = userCredential.user;
-
-            sendEmailVerification(user);
+      } else {     
 
             await addDoc(waitlistDatabase, {
               emailAdddress: emailAdddress,
               walletAddress: walletAddress,
-            });
-            AlertPopup(
-              "You've successfully joined the waitlist, kindly verify your email address \n",
-              "OK"
-            );
-          })
+            })  
+
+           router.push('/confirm-waitlist')
+
           .catch((error) => {
             // Handle errors
             const errorCode = error.code;
@@ -133,9 +104,7 @@ export default function WaitlistFill() {
         setEmailAddress("");
         setWalletAddress("");
 
-        console.log("this is true");
       }
-
     } catch (error) {
       console.error("Firebase error", error);
     }
