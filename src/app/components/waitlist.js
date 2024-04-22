@@ -158,7 +158,7 @@ export default function WaitlistFill() {
               borderColor: "gray",
             }}
             type="text"
-            placeholder="Enter your wallet address"
+            placeholder="Enter your EVM wallet address"
             id="text"
             name="text"
             required
