@@ -6,8 +6,14 @@ import "next/image";
 import { useEffect, useState } from "react";
 import { db, auth } from "../firebaseConfig";
 
-import { collection, addDoc } from "firebase/firestore";
-
+import {
+  collection,
+  query,
+  getDoc,
+  where,
+  doc,
+  setDoc,
+} from "firebase/firestore";
 
 const ParentVariants = {
   hidden: {
@@ -60,61 +66,47 @@ const buttonVariants = {
   },
 };
 
-
-
 export default function WaitlistFill() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const waitlistDatabase = collection(db, "signers");
-
-const router = useRouter();
+  const router = useRouter();
 
   const [emailAdddress, setEmailAddress] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
+
+  const waitlistDatabase = collection(db, "signers");
 
   const regexEmailAddress =
     /^(?!\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const isValidateRegexEmailAddress = regexEmailAddress.test(emailAdddress);
 
   const handleSubmit = async () => {
-
     try {
       if (!isValidateRegexEmailAddress) {
-        AlertPopup("Enter correct email address", "OK");
-      } else {     
+        AlertPopup("Enter right mail address");
+      } else {
+        const customId = emailAdddress;
 
-            await addDoc(waitlistDatabase, {
-              emailAdddress: emailAdddress,
-              walletAddress: walletAddress,
-            })  
+        const docRef = doc(db, "signers", customId);
+        const docSnap = await getDoc(docRef);
 
-           router.push('/confirm-waitlist')
-
-          .catch((error) => {
-            // Handle errors
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            if (errorCode === "auth/email-already-in-use") {
-              AlertPopup("Email already in use", "Ok");
-              // You can notify the user or handle this case as needed
-            } else {
-              console.error("Error:", errorMessage);
-            }
+        if (docSnap.exists()) {
+          AlertPopup("Email address exist", "Ok");
+        } else {
+          // docSnap.data() will be undefined in this case
+          await setDoc(doc(db, "signers", customId), {
+            emailAdddress: emailAdddress,
+            walletAddress: walletAddress,
           });
-        setEmailAddress("");
-        setWalletAddress("");
+          AlertPopup("Waitlist joined", "Ok");
 
+          router.push("/confirm-waitlist");
+        }
       }
     } catch (error) {
-      console.error("Firebase error", error);
+      console.log("error", error);
     }
   };
-
-  useEffect(() => {
-    auth.onAuthStateChanged((userCredential) => {
-      console.log(userCredential);
-    });
-  }, []);
 
   return (
     <div
