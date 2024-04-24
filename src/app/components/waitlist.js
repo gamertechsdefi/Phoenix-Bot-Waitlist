@@ -74,8 +74,6 @@ export default function WaitlistFill() {
   const [emailAdddress, setEmailAddress] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
 
-  const waitlistDatabase = collection(db, "signers");
-
   const regexEmailAddress =
     /^(?!\.)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const isValidateRegexEmailAddress = regexEmailAddress.test(emailAdddress);
