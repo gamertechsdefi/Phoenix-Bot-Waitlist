@@ -67,7 +67,6 @@ const buttonVariants = {
 };
 
 export default function WaitlistFill() {
-  const [isOpen, setIsOpen] = useState(false);
 
   const router = useRouter();
 

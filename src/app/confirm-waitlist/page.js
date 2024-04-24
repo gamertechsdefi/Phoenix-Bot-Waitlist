@@ -5,9 +5,11 @@ import HomeNavBar from "../components/home-navbar";
 
 export default function ConfirmWaitlist() {
   return (
-    <div>
-    <HomeNavBar />
-    <div className="mx-8 flex flex-col text-center justify-center items-center h-[100vh]">
+    <div className="h-screen">
+      <div className="absolute top-0 w-full">
+      <HomeNavBar />
+      </div>
+    <div className="mx-8 h-full flex flex-col text-center items-center justify-center ">
       <div className="flex-col mb-8">
         <p>
           Thank you for joining the waitlist, stay tuned on more information by
