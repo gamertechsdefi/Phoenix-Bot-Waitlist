@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import {useState } from "react";
 import "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -44,9 +44,6 @@ const popupButtonVariants = {
 export default function HomeNavBar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  // const menuRef = useRef();
-  // const listRef = useRef();
-
   return (
     <nav className=" bg-white sticky top-0 z-30 items-center">
       <motion.div
@@ -73,7 +70,7 @@ export default function HomeNavBar() {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="mt-8 flex flex-col absolute bg-gray-100 p-4 rounded-sm "
+                className="mt-8 flex flex-col absolute bg-gray-100 p-4 px-8 rounded-sm "
               >
                 <motion.ul
                   onClick={() => setIsOpen(false)}
@@ -82,35 +79,35 @@ export default function HomeNavBar() {
                   <a
                     target="blank"
                     href="https://phoenixtoken.community"
-                    className="hover:text-gray-500"
+                    className="hover:text-gray-500 mb-1"
                   >
                     Home
                   </a>
                   <a
                   target="blank"
                     href="https://t.me/PhoenixToken0"
-                    className="hover:text-gray-500"
+                    className="hover:text-gray-500 mb-1"
                   >
                     Telegram
                   </a>
                   <a
                   target="blank"
                     href="https://x.com/PhoenixToken0"
-                    className="hover:text-gray-500"
+                    className="hover:text-gray-500 mb-1"
                   >
                     Twitter
                   </a>
                   <a
                   target="blank"
                     href="https://medium.com/@phoenixtoken"
-                    className="hover:text-gray-500"
+                    className="hover:text-gray-500 mb-1"
                   >
                     Medium
                   </a>
                   <a
                   target="blank"
                     href="https://warpcast.com/phoenixtoken"
-                    className="hover:text-gray-500"
+                    className="hover:text-gray-500 mb-1"
                   >
                     Warpcaster
                   </a>

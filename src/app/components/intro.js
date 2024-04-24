@@ -1,7 +1,4 @@
 "use client";
-import Link from "next/link";
-
-import { useRef } from "react";
 import { motion, useScroll } from "framer-motion";
 
 import "next/image";
@@ -229,6 +226,7 @@ export default function Intro() {
         </div>
       </motion.div>
       {/*Smart Contract Check div ends here */}
+
     </motion.div>
   );
 }

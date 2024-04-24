@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
 import "next/image";
-import { useEffect, useState } from "react";
-import { db, auth } from "../firebaseConfig";
+import { useState } from "react";
+import { db } from "../firebaseConfig";
 
 import {
   collection,
