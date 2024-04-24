@@ -103,7 +103,7 @@ export default function Intro() {
               smart contract audits. By meticulously scrutinizing every line of
               code, it ensures that the contracts you engage with are secure and
               free from vulnerabilities. This proactive approach mitigates the
-              risk s associated with smart contract exploits, offering you peace
+              risks associated with smart contract exploits, offering you peace
               of mind as you navigate the decentralized landscape.
             </p>
           </div>
